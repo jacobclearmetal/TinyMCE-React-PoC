@@ -1,3 +1,30 @@
+# WYSIWYG PoC
+
+This is a PoC of [TinyMCE React](https://www.tiny.cloud/docs/integrations/react/) and a test of:
+
+- Editor output
+- Integration/Transformation to Components to support existing JSS stack
+
+## Setup
+
+Clone Repo
+
+Change directory to repo
+
+Install packages
+
+```ssh
+npm i
+```
+
+Start App
+
+```ssh
+npm start
+```
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
