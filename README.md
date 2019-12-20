@@ -14,7 +14,7 @@ Change directory to repo
 Install packages
 
 ```ssh
-npm i
+npm install
 ```
 
 Start App
