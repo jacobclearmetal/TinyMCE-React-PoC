@@ -3,7 +3,7 @@
 This is a PoC of [TinyMCE React](https://www.tiny.cloud/docs/integrations/react/) and a test of:
 
 - Editor output
-- Integration/Transformation to Components to support existing JSS stack
+- Integration/Transformation of Editor output to React Components to support existing JSS stack
 
 ## Setup
 
