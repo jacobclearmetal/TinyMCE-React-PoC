@@ -1,16 +1,60 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 import { Editor } from "@tinymce/tinymce-react";
+import parse from "html-react-parser";
+
+/*
+
+# Learnings: 
+
+- We should probably avoid data-attributes
+  - what if styles change?
+- Focus on straight HTML elements - P tag turns into <Typography whatever="whatever" />
+- Leaving <strong>, <italic>, correctly formats if nested withing <Typography />
+- 
+
+*/
 
 const htmlToComponents = (rawHtml, typographyProps) => {
   // TODO:
-  // - Properly convert to a component
-  // - Convert with correct styling (bold for example)
-  const convertedContent = (
-    <Typography {...typographyProps} gutterBottom>
-      {rawHtml}
-    </Typography>
-  );
+  // - [ ] Parse HTML before rendering
+  // - [ ] Properly convert to a component
+  // - [ ] Convert with correct styling (bold for example)
+
+  const convertedContent = parse(rawHtml, {
+    replace: domNode => {
+      // TODO: Make this woork
+
+      console.log("domNode", domNode);
+      if (
+        domNode.prev &&
+        domNode.prev.parent.name &&
+        (domNode.prev.parent.name === "p" ||
+          domNode.prev.parent.name === "strong")
+      ) {
+        return domNode.data;
+      } else if (domNode.parent && domNode.parent.name === "p") {
+        console.log("Ladies and gentlemen, we got 'em");
+        return (
+          <Typography {...typographyProps} gutterBottom>
+            {domNode.data}
+          </Typography>
+        );
+      } else if (domNode.attribs && domNode.attribs.id === "replace") {
+        return React.createElement("span", {}, "replaced");
+      } else {
+        console.log("uncaught", domNode);
+      }
+    }
+  });
+
+  console.log("convertedContent", convertedContent);
+
+  // const convertedContent = (
+  //   <Typography {...typographyProps} gutterBottom>
+  //     {rawHtml}
+  //   </Typography>
+  // );
 
   return convertedContent;
 };
