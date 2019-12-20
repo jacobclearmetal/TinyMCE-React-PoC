@@ -23,17 +23,8 @@ const htmlToComponents = (rawHtml, typographyProps) => {
 
   const convertedContent = parse(rawHtml, {
     replace: domNode => {
-      // TODO: Make this woork
-
       console.log("domNode", domNode);
-      if (
-        domNode.prev &&
-        domNode.prev.parent.name &&
-        (domNode.prev.parent.name === "p" ||
-          domNode.prev.parent.name === "strong")
-      ) {
-        return domNode.data;
-      } else if (domNode.parent && domNode.parent.name === "p") {
+      if (domNode.parent && domNode.parent.name === "p") {
         console.log("Ladies and gentlemen, we got 'em");
         return (
           <Typography {...typographyProps} gutterBottom>
